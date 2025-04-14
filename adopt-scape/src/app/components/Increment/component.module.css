@@ -1,0 +1,59 @@
+
+.container {
+    display: inline-flex;
+    align-items: stretch;
+    align-content: space-between;
+
+}
+
+.button {
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border: 0px;
+}
+
+.right{
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+}
+
+.left{
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+.name {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+    padding: 0px 12px;
+}
+
+.input {
+    border: none;
+    background-color: inherit;
+
+    display: flex;
+    flex-shrink: 3;
+    max-width: 4rem;
+
+    padding: 0px 12px;
+}
+
+/*Font changes*/
+
+.button, .input {
+    font-weight: 400;
+    text-align: center;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    font-size: 16px;
+    font-size: normal;
+}
