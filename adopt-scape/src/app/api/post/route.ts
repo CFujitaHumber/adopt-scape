@@ -1,9 +1,42 @@
 "use server";
-
+import { animal, sort } from "../../components/SearchBar/searchbar";
 export async function POST(req: Request) {
   const body = await req.json();
+
+  //get data from body
+  const {latitude, longitude, animalType, sortType, name, pagination} = body;
+
+  //handle bad requests
+  if(animalType === undefined){
+    return new Response("Error: No Animal", {
+      status: 400,
+      headers: { error: "Request contains no animal type" }
+    });
+  }
+
+  if(sortType == undefined){
+    return new Response("Error: No Sort", {
+      status: 400,
+      headers: { error: "Request contains no sort type" }
+    });
+  }
+
+
+  // //check for name 
+  // if(name != undefined && name.indexOf(' ') >= 0){
+  //   return new Response("Error: Search must be spaceless", {
+  //     status: 400,
+  //     headers: { error: "Request involved wrong format" }
+  //   });
+  // }
+
   try {
-    const json = await fetch(`https://api.petfinder.com/v2/animals?type=cat`, {
+    const json = await fetch(`https://api.petfinder.com/v2/animals?type=${animalType}`
+      + (name === "" ? "" : `&name=${name}`)
+      + (latitude === undefined ? '':`&location=${latitude},${longitude}`
+      + `&sort=${sortType}`
+      + (pagination === undefined? '': `&page=${pagination}`)
+      ), {
       method: "GET",
       headers: {
         "Authorization": `${body.token_type} ${body.token}`,
@@ -17,7 +50,7 @@ export async function POST(req: Request) {
 
     const data = await json.json();
 
-    console.log(data);
+    //console.log(data);
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: {
