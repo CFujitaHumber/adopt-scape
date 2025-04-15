@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "./components/Navbar/navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from "./components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "AdoptScape",
@@ -23,9 +24,7 @@ export default function RootLayout({
       </head>
       <body>
         {children}
-        <footer>
-          Footer
-        </footer> 
+        <Footer /> 
         <script>var Alert = ReactBootstrap.Alert;</script>
       </body>
     </html>
