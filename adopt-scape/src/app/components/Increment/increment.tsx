@@ -17,6 +17,63 @@ type props = {
     setValue: Dispatch<SetStateAction<number>>; 
 }
 
+//style
+const containerStyle = {
+  display: "inline-flex",
+  alignItems: "stretch",
+  alignContent: "space-between",
+};
+
+const buttonStyle = {
+  display: "flex",
+  FlexDirection: "column",
+  alignItems: "flex-start",
+  gap: "10px",
+  border: "0px",
+
+  // Shared font styles
+  fontWeight: 400,
+  TextAlign: "center",
+  textOverflow: "ellipsis",
+  lineHeight: "24px",
+  fontSize: "16px",
+};
+
+const rightStyle = {
+  borderTopLeftRadius: "100px",
+  borderBottomLeftRadius: "100px",
+};
+
+const leftStyle = {
+  borderTopRightRadius: "100px",
+  borderBottomRightRadius: "100px",
+};
+
+const nameStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "10px",
+  padding: "0px 12px",
+};
+
+const inputStyle = {
+  border: "none",
+  backgroundColor: "inherit",
+  display: "flex",
+  flexShrink: 3,
+  maxWidth: "4rem",
+  padding: "0px 12px",
+
+  // Shared font styles
+  fontWeight: 400,
+  TextAlign: "center",
+  textOverflow: "ellipsis",
+  lineHeight: "24px",
+  fontSize: "16px",
+};
+
+
 export default function Increment({name, min, max, value, setValue}: props){
     //validate range
     if(min > max){
@@ -26,13 +83,18 @@ export default function Increment({name, min, max, value, setValue}: props){
     const increase = () => value+1 <= max ? setValue(++value) : null;
     const decrease = () => value-1 >= min ? setValue(--value) : null;
 
-    return (<div className={style.container}>
-        <Button className={`${style.button} ${style.right} `} aria-labelledby={`increment-${name}`} onClick={decrease}>-</Button>
+    return (<div style={{...containerStyle}}>
+        <Button
+        style={{...buttonStyle, ...rightStyle}}
+        aria-labelledby={`increment-${name}`} onClick={decrease}>-</Button>
         
-        <label className={` ${ themeDectector() == Theme.Dark ? "bg-light" : "bg-dark" } ${style.name}`} >
+        <label 
+        style={{...nameStyle}}
+        className={` ${ themeDectector() == Theme.Dark ? "bg-light" : "bg-dark" }`} >
             {name}
              <input 
-            className={style.input} 
+            style={{...inputStyle}}
+
             min={min} 
             max={max}
               type="number" 
@@ -41,6 +103,6 @@ export default function Increment({name, min, max, value, setValue}: props){
               id={`increment-${name}`}
               />
         </label>
-        <Button className={`${style.button} ${style.left}`} aria-labelledby={`increment-${name}`} onClick={increase}>+</Button>
+        <Button style={{...buttonStyle, ...leftStyle}} aria-labelledby={`increment-${name}`} onClick={increase}>+</Button>
     </div>); //temprory TODO
 }
