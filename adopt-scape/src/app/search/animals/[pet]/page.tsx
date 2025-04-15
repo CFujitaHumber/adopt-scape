@@ -105,15 +105,14 @@ export default function PetDisplay() {
 
   useEffect(() => {
     const getToken = async () => {
-      console.log("Fetching");
+      console.log("fetching token for client");
       try {
-        const token_response = await fetch("/api", {
+        const token_response = await fetch("/api/token", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-        console.log("Fetching");
 
         if (!token_response.ok) {
           throw new Error(`HTTP error: ${token_response.status}`);
@@ -121,10 +120,9 @@ export default function PetDisplay() {
 
         const token_data = await token_response.json();
 
-        console.log(token_data);
-
         setToken(token_data.access_token);
-
+        console.log("Token Fetched Successfully");
+        
         //const search_data  = await Search(token_data.access_token);
         //console.log(search_data);
       } catch (error) {
@@ -159,7 +157,7 @@ export default function PetDisplay() {
     });
 
     try {
-      const search_response = await fetch("/api/post", {
+      const search_response = await fetch("/api/search", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -240,9 +238,10 @@ export default function PetDisplay() {
         );
       }
     };
-    
+
     return (
       <>
+        {/**The display of results */}
         <Row xs={1} md={6} className="g-1 align-items-stretch">
           {Array.from({ length: cards.length }).map((_, idx) => (
             <Col key={idx} className="">
@@ -272,7 +271,6 @@ export default function PetDisplay() {
           isDisabled={token === ""} //prevents search before token
         />
       </Container>
-
       <Container fluid>
         {results === undefined ? <></> : handleResults()}
       </Container>

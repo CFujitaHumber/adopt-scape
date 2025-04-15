@@ -1,3 +1,8 @@
+/**
+ * @author Carson Fujita
+ * @copyright Carson Fujita
+ * Example api
+ */
 "use server";
 import { NextApiRequest, NextApiResponse } from 'next';
 

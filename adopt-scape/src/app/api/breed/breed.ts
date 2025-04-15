@@ -1,3 +1,8 @@
+/**
+ * @author Carson Fujita
+ * @copyright Carson Fujita, 2025
+ * This API fetches breed data from another api
+ */
 "use server";
 import { headers } from "next/headers";
 

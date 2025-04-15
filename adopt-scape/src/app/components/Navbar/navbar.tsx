@@ -70,10 +70,10 @@ function Navigation({
           AdoptScape
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link as={Link} href="/search/animals/cats">
+          <Nav.Link as={Link} href="/search/animals/cat">
             Cats
           </Nav.Link>
-          <Nav.Link as={Link} href="/search/animals/dogs">
+          <Nav.Link as={Link} href="/search/animals/dog">
             Dogs
           </Nav.Link>
           {renderCanvas()}
