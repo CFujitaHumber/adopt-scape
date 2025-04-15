@@ -17,6 +17,7 @@ import SearchBar, {
   sort,
 } from "../../../components/SearchBar/searchbar";
 import SearchResult from "../../../components/SearchResult/searchResult";
+import CatSettings from "@/app/components/CatSettings/CatSettings";
 
 //types
 
@@ -271,6 +272,10 @@ export default function PetDisplay() {
           isDisabled={token === ""} //prevents search before token
         />
       </Container>
+      {/* <Container>
+        <CatSettings 
+        />
+      </Container> */}
       <Container fluid>
         {results === undefined ? <></> : handleResults()}
       </Container>
